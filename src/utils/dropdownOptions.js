@@ -23,3 +23,5 @@ export const generateYearOptions = (start, end) => {
 
   return yearOptions;
 };
+
+export const [CARDNUMBER, CARDHOLDER, DATE, CVV] = ['CARDNUMBER', 'CARDHOLDER', 'DATE', 'CVV'];

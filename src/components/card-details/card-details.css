@@ -1,8 +1,8 @@
 .ui.card.card-form {
   width: 90%;
-  max-width: 600px;
+  max-width: 500px;
   padding-top: 160px;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 5px 20px 0 hsla(0, 2%, 12%, 0.4);
   margin-bottom: 120px;
 }
