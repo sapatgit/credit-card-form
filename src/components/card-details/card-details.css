@@ -1,0 +1,40 @@
+.ui.card.card-form {
+  width: 90%;
+  max-width: 600px;
+  padding-top: 160px;
+  border-radius: 5px;
+  box-shadow: 0 5px 20px 0 hsla(0, 2%, 12%, 0.4);
+  margin-bottom: 120px;
+}
+.card-form label {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.field {
+  margin-bottom: 10px;
+  display: flex;
+  flex-flow: column;
+}
+.date-details {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.date-details > * {
+  flex-grow: 2;
+  flex-basis: 40px;
+  margin-right: 10px;
+}
+.date-details > *:last-child {
+  flex-grow: 3;
+  margin-right: 0;
+}
+.card-illustration .credit-card {
+  position: absolute;
+  top: -120px;
+}
+.card-illustration {
+  display: flex;
+  justify-content: center;
+}
