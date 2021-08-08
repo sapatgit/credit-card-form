@@ -21,7 +21,10 @@ const CardIllustration = ({
   };
 
   return (
-    <div className="credit-card">
+    <div
+      className="credit-card"
+      className={`credit-card ${focus === CVV ? "flip" : ""}`}
+    >
       {focus === CVV ? (
         <div>
           <div className="black-strip"></div>
@@ -47,7 +50,16 @@ const CardIllustration = ({
             {getCardNumberString(cardNumber)
               .split(" ")
               .map((str, index) => (
-                <span key={index}>{str}</span>
+                <span key={`card-num-gr-${index}`}>
+                  {[...str].map((digit, i) => (
+                    <span
+                      key={`card-num-digit-${index * 4 + i}-${digit}`}
+                      className="slideup-animation"
+                    >
+                      {digit}
+                    </span>
+                  ))}
+                </span>
               ))}
           </div>
           <div className="card-name">
@@ -58,7 +70,21 @@ const CardIllustration = ({
             >
               <label>Card Holder</label>
               <span className="name-field">
-                {cardHolder ? cardHolder.toUpperCase() : "FULL NAME"}
+                <span
+                  className="slideup-animation"
+                  key={`cardholder-${!!cardHolder}`}
+                >
+                  {cardHolder
+                    ? [...cardHolder.toUpperCase()].map((char, index) => (
+                        <span
+                          className="skew-animation"
+                          key={`cardholder-charat-${index}-${char}`}
+                        >
+                          {char == ' '? <span>&nbsp;&nbsp;</span> : char}
+                        </span>
+                      ))
+                    : "FULL NAME"}
+                </span>
               </span>
             </div>
 
@@ -69,8 +95,19 @@ const CardIllustration = ({
             >
               <label>Expires</label>
               <div className="expiry-fields">
-                <span>{expiryMonth ? expiryMonth : "MM"}</span>/
-                <span>{expiryYear ? expiryYear.slice(2) : "YY"}</span>
+                <span
+                  className="slideup-animation"
+                  key={`expiryMonth-${expiryMonth ? expiryMonth : "MM"}`}
+                >
+                  {expiryMonth ? expiryMonth : "MM"}
+                </span>
+                /
+                <span
+                  className="slideup-animation"
+                  key={`expiryYear-${expiryYear ? expiryYear.slice(2) : "YY"}`}
+                >
+                  {expiryYear ? expiryYear.slice(2) : "YY"}
+                </span>
               </div>
             </div>
           </div>
