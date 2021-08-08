@@ -1,5 +1,7 @@
 .credit-card {
   background-image: url("../../assets/images/6.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 380px;
   height: 257px;
   border-radius: 15px;
