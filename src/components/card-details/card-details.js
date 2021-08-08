@@ -12,8 +12,9 @@ import {
 } from "../../utils/dropdownOptions";
 
 const CardDetails = () => {
+  const currentYear = Number(new Date().getFullYear());
   const monthOptions = generateMonthOptions();
-  const yearOptions = generateYearOptions(1950, 2050);
+  const yearOptions = generateYearOptions(currentYear, currentYear + 50);
 
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
@@ -40,83 +41,85 @@ const CardDetails = () => {
   };
 
   return (
-    <Card className="card-form">
-      <Card.Content>
-        <div className="card-illustration">
-          <CardIllustration
-            cardNumber={cardNumber}
-            cardHolder={cardHolder}
-            expiryMonth={expiryMonth}
-            expiryYear={expiryYear}
-            cvv={cvv}
-            focus={focus}
-          />
-        </div>
-        <Form.Input
-          fluid
-          label="Card Number"
-          value={cardNumber}
-          onChange={(e) => formatCardNumber(e.target.value)}
-          onBlur={(e) => {
-            setFocus(null);
-            formatCardNumber(e.target.value);
-          }}
-          onFocus={() => setFocus(CARDNUMBER)}
-        />
-        <Form.Input
-          fluid
-          label="Card Holders"
-          value={cardHolder}
-          onChange={(e) => setCardHolder(e.target.value)}
-          onBlur={(e) => {
-            setFocus(null);
-            setCardHolder(e.target.value);
-          }}
-          onFocus={() => setFocus(CARDHOLDER)}
-        />
-        <div className="date-details">
-          <Form.Select
+    <div className="card-container">
+      <Card className="card-form">
+        <Card.Content>
+          <div className="card-illustration">
+            <CardIllustration
+              cardNumber={cardNumber}
+              cardHolder={cardHolder}
+              expiryMonth={expiryMonth}
+              expiryYear={expiryYear}
+              cvv={cvv}
+              focus={focus}
+            />
+          </div>
+          <Form.Input
             fluid
-            label="Expiration Date"
-            options={monthOptions}
-            placeholder="Month"
-            value={expiryMonth}
-            onChange={(e, { value }) => setExpiryMonth(value)}
-            onBlur={(e, { value }) => {
+            label="Card Number"
+            value={cardNumber}
+            onChange={(e) => formatCardNumber(e.target.value)}
+            onBlur={(e) => {
               setFocus(null);
-              setExpiryMonth(value);
+              formatCardNumber(e.target.value);
             }}
-            onFocus={() => setFocus(DATE)}
-          />
-          <Form.Select
-            fluid
-            options={yearOptions}
-            placeholder="Year"
-            value={expiryYear}
-            onChange={(e, { value }) => setExpiryYear(value)}
-            onBlur={(e, { value }) => {
-              setFocus(null);
-              setExpiryYear(value);
-            }}
-            onFocus={() => setFocus(DATE)}
+            onFocus={() => setFocus(CARDNUMBER)}
           />
           <Form.Input
             fluid
-            label="CVV"
-            value={cvv}
-            onChange={(e) => formatCvv(e.target.value)}
+            label="Card Holders"
+            value={cardHolder}
+            onChange={(e) => setCardHolder(e.target.value)}
             onBlur={(e) => {
               setFocus(null);
-              formatCvv(e.target.value);
+              setCardHolder(e.target.value);
             }}
-            onFocus={() => setFocus(CVV)}
+            onFocus={() => setFocus(CARDHOLDER)}
           />
-        </div>
-        <Form.Button fluid primary>
-          Submit
-        </Form.Button>
-      </Card.Content>
-    </Card>
+          <div className="date-details">
+            <Form.Select
+              fluid
+              label="Expiration Date"
+              options={monthOptions}
+              placeholder="Month"
+              value={expiryMonth}
+              onChange={(e, { value }) => setExpiryMonth(value)}
+              onBlur={(e, { value }) => {
+                setFocus(null);
+                setExpiryMonth(value);
+              }}
+              onFocus={() => setFocus(DATE)}
+            />
+            <Form.Select
+              fluid
+              options={yearOptions}
+              placeholder="Year"
+              value={expiryYear}
+              onChange={(e, { value }) => setExpiryYear(value)}
+              onBlur={(e, { value }) => {
+                setFocus(null);
+                setExpiryYear(value);
+              }}
+              onFocus={() => setFocus(DATE)}
+            />
+            <Form.Input
+              fluid
+              label="CVV"
+              value={cvv}
+              onChange={(e) => formatCvv(e.target.value)}
+              onBlur={(e) => {
+                setFocus(null);
+                formatCvv(e.target.value);
+              }}
+              onFocus={() => setFocus(CVV)}
+            />
+          </div>
+          <Form.Button fluid primary>
+            Submit
+          </Form.Button>
+        </Card.Content>
+      </Card>
+    </div>
   );
 };
 

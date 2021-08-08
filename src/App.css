@@ -1,6 +1,7 @@
 .container {
   height: 100vh;
   background: #ddedfd;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
