@@ -57,7 +57,7 @@ const CardIllustration = ({
         <React.Fragment>
           <div className="chip-row">
             <Image src={chip} alt="chip" width="50px" className="chip" />
-            <Image src={logo?.img} alt="icon" height="40px" className="logo" key={logo?.key} className="slideup-animation" />
+            <Image src={logo?.img} alt="icon" height="40px" className="logo slideup-animation" key={logo?.key} />
           </div>
           <div
             className={`card-number card-field ${
