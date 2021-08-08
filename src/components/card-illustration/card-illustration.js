@@ -22,7 +22,6 @@ const CardIllustration = ({
 
   return (
     <div
-      className="credit-card"
       className={`credit-card ${focus === CVV ? "flip" : ""}`}
     >
       {focus === CVV ? (
@@ -80,7 +79,7 @@ const CardIllustration = ({
                           className="skew-animation"
                           key={`cardholder-charat-${index}-${char}`}
                         >
-                          {char == ' '? <span>&nbsp;&nbsp;</span> : char}
+                          {char === ' '? <span>&nbsp;&nbsp;</span> : char}
                         </span>
                       ))
                     : "FULL NAME"}
