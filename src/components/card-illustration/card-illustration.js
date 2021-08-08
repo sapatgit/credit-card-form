@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import chip from "../../assets/images/chip.png";
 import visa from "../../assets/images/visa.png";
+import mastercard from "../../assets/images/mastercard.png";
+import amex from "../../assets/images/amex.png";
+
 import "./card-illustration.css";
 import { Image } from "semantic-ui-react";
 import { CARDNUMBER, CARDHOLDER, DATE, CVV } from "../../utils/dropdownOptions";
+import { getCardType } from "../../utils/cardTypes";
 
 const CardIllustration = ({
   cardNumber,
@@ -19,11 +23,25 @@ const CardIllustration = ({
       .map((char, index) => (index < num.length ? num.charAt(index) : char))
       .join("");
   };
+  const [logo, setLogo] = useState({key: 'visa', img: visa});
 
+  useEffect(() => {
+    const res = getCardType(cardNumber.replace(/\s/g, ""));
+    if (!res) {
+      setLogo({key: 'visa', img: visa});
+    } else if (res.toLowerCase() === 'visa') {
+      setLogo({key: 'visa', img: visa});
+    } else if (res.toLowerCase() === 'mastercard') {
+      setLogo({key: 'mastercard', img: mastercard});
+    } else if (res.toLowerCase() === 'amex') {
+      setLogo({key: 'amex', img: amex});
+    } else {
+      setLogo({key: 'visa', img: visa});
+    }
+  }, [cardNumber]);
+  
   return (
-    <div
-      className={`credit-card ${focus === CVV ? "flip" : ""}`}
-    >
+    <div className={`credit-card ${focus === CVV ? "flip" : ""}`}>
       {focus === CVV ? (
         <div>
           <div className="black-strip"></div>
@@ -32,14 +50,14 @@ const CardIllustration = ({
               <label>CVV</label>
               <div className="cvv-input">{cvv}</div>
             </div>
-            <Image src={visa} alt="icon" height="40px" className="logo" />
+            <Image src={logo.img} alt="icon" height="40px" className="logo" />
           </div>
         </div>
       ) : (
         <React.Fragment>
           <div className="chip-row">
             <Image src={chip} alt="chip" width="50px" className="chip" />
-            <Image src={visa} alt="icon" height="40px" className="logo" />
+            <Image src={logo?.img} alt="icon" height="40px" className="logo" key={logo?.key} className="slideup-animation" />
           </div>
           <div
             className={`card-number card-field ${
@@ -79,7 +97,7 @@ const CardIllustration = ({
                           className="skew-animation"
                           key={`cardholder-charat-${index}-${char}`}
                         >
-                          {char === ' '? <span>&nbsp;&nbsp;</span> : char}
+                          {char === " " ? <span>&nbsp;&nbsp;</span> : char}
                         </span>
                       ))
                     : "FULL NAME"}
