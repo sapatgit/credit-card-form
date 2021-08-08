@@ -23,7 +23,6 @@
   justify-content: space-between;
 }
 .card-field label {
-  font-size: 0.8em;
   color: lightgray;
 }
 .card-field--border {
@@ -93,4 +92,57 @@
 }
 .cvv label {
   text-align: right;
+}
+@media screen and (max-width: 480px) {
+  .credit-card {
+    width: 260px;
+    height: 176px;
+    border-radius: 10px;
+  }
+  .credit-card {
+    padding: 12px;
+  }
+  .logo {
+    width: 50px;
+    height: 27px;
+  }
+  .chip {
+    width: 40px;
+    height: 30px;
+  }
+  .card-number {
+    font-size: 1.5em;
+    padding: 7px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .field.card-field {
+    padding:  4px;
+    font-size: 0.85em;
+  }
+  .expiry {
+    flex-grow: 0;
+    min-width: 51px;
+  }
+  .black-strip {
+    width: 260px;
+    height: 30px;
+    top: 10px;
+    left: -12px;
+  }
+  .cvv-input {
+    height: 30px;
+    border-radius: 5px;
+    color: #000;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+  }
+  .field.cvv {
+    margin-bottom: 15px;
+  }
+  .field.cvv label{
+    font-size: 0.85em;
+  }
 }

@@ -30,14 +30,14 @@ const CardIllustration = ({
               <label>CVV</label>
               <div className="cvv-input">{cvv}</div>
             </div>
-            <Image src={visa} alt="icon" height="40px" />
+            <Image src={visa} alt="icon" height="40px" className="logo" />
           </div>
         </div>
       ) : (
         <React.Fragment>
           <div className="chip-row">
-            <Image src={chip} alt="chip" width="50px" />
-            <Image src={visa} alt="icon" height="40px" />
+            <Image src={chip} alt="chip" width="50px" className="chip" />
+            <Image src={visa} alt="icon" height="40px" className="logo" />
           </div>
           <div
             className={`card-number card-field ${
